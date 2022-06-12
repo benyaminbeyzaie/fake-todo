@@ -8,10 +8,12 @@
 import SwiftUI
 
 @main
-struct TodoAppApp: App {
+struct TodoApp: App {
+    @State private var todos = Todo.sample
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TababrView(todos: $todos)
         }
     }
 }
