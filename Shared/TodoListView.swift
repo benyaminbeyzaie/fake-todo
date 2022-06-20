@@ -23,7 +23,6 @@ struct TodoListView: View {
                 DatePicker(selection: $dateFilter, displayedComponents: .date) {
                     Text("Select a date")
                 }.padding().disabled(showAll)
-                
                 List {
                     ForEach($todos, id: \.title) { $todo in
                         let sameDay = Calendar.current.isDate(todo.dueDate, equalTo: dateFilter, toGranularity: .day)

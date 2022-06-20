@@ -14,8 +14,8 @@ struct TodoDetailedEditView: View {
         Form {
             Section(header: Text("Todo")) {
                 TextField("Title", text: $data.title)
-                DatePicker(selection: $data.dueDate, in: Date()..., displayedComponents: .date) {
-                    Text("Select a date")
+                DatePicker(selection: $data.dueDate, in: Date()..., displayedComponents: [.date, .hourAndMinute]) {
+                    Text("Date")
                 }
             }
         }

@@ -20,8 +20,22 @@ struct TodoDetailedView: View {
                 Label(todo.title, systemImage: "timer")
                             .font(.headline)
                             .foregroundColor(.accentColor)
-                        
+                HStack {
+                    Image(systemName: "calendar")
+                                    .frame(width: 20, height: 20, alignment: .leading)
+                    HStack {
+                        Text(todo.dueDate, style: .date)
+                        Spacer()
+                        Text(todo.dueDate, style: .time)
                     }
+                }
+            }
+          
+            Button(action: { todo.update(from: Todo.Data(title: todo.title, dueDate: todo.dueDate, theme: todo.theme, isDone: true)) }) {
+                    Text("Done")
+            }.padding()
+            .foregroundColor(.green)
+            
         }.navigationTitle(todo.title).toolbar {
             Button("Edit") {
                 isPresentingEditView = true
