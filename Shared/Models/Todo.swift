@@ -57,10 +57,22 @@ extension Todo {
 }
 
 extension Todo {
+    
+    static func a(_ date: String) -> Date {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd HH:mm"
+        let someDateTime = formatter.date(from: date)
+        return someDateTime!
+    }
+
+    
     static let sample: [Todo] = [
-        Todo.init(title: "b", dueDate: Date.now, theme: Theme.yellow, isDone: false , color: Color.yellow , createDate: Date.now),
-        Todo.init(title: "a", dueDate: Date.distantPast, theme: Theme.yellow, isDone: false , color: Color.red , createDate: Date.now),
-        Todo.init(title: "c", dueDate: Date.now, theme: Theme.yellow, isDone: false, color: Color.white , createDate: Date.now),
+        Todo.init(title: "A", dueDate: Date.now, theme: Theme.yellow, isDone: false , color: Color.red , createDate: Date.now),
+        Todo.init(title: "B", dueDate: Date.now, theme: Theme.yellow, isDone: false , color: Color.yellow , createDate: Date.distantPast),
+        Todo.init(title: "C", dueDate: Date.now, theme: Theme.yellow, isDone: false, color: Color.white , createDate: Date.now),
+        Todo.init(title: "D", dueDate: a("2022/07/22 10:30"), theme: Theme.yellow, isDone: false , color: Color.blue , createDate: a("2022/06/22 10:30")),
+        Todo.init(title: "E", dueDate: a("2022/07/22 10:32"), theme: Theme.yellow, isDone: false , color: Color.green , createDate: a("2022/05/22 10:30")),
+        Todo.init(title: "F", dueDate: a("2022/07/22 10:34"), theme: Theme.yellow, isDone: false , color: Color.pink , createDate: a("2022/04/22 10:30")),
     ]
 }
 

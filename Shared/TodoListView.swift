@@ -1,10 +1,3 @@
-//
-//  TodoListView.swift
-//  TodoApp (iOS)
-//
-//  Created by Benyamin on 6/9/22.
-//
-
 import SwiftUI
 
 struct TodoListView: View {
@@ -14,27 +7,47 @@ struct TodoListView: View {
     @State private var dateFilter = Date()
     @State private var showAll = false;
     @State private var sortMode = "-";
+    @State private var ascending = true;
     @State private var showingSheet = false;
     
     
     func sortByAlphabet() {
-        todos = todos.sorted(by: { $0.title < $1.title })
+        if (ascending){
+            todos = todos.sorted(by: { $0.title > $1.title })
+        } else {
+            todos = todos.sorted(by: { $0.title < $1.title })
+        }
     }
     
-    func sortByDueDate() {
-        todos = todos.sorted(by: { $0.dueDate <= $1.dueDate })
+    func sortByDueDate(_ mode: Bool = false) {
+        if (!mode){
+           if (ascending){
+                todos = todos.sorted(by: { $0.dueDate < $1.dueDate })
+           } else {
+               todos = todos.sorted(by: { $0.dueDate > $1.dueDate })
+           }
+        }else{
+            todos = todos.sorted(by: { $0.dueDate < $1.dueDate })
+        }
     }
     
     func sortByCreatedDate() {
-        todos = todos.sorted(by: { $0.createDate <= $1.createDate })
+        if (ascending){
+            todos = todos.sorted(by: { $0.createDate > $1.createDate })
+        } else {
+            todos = todos.sorted(by: { $0.createDate < $1.createDate })
+        }
     }
     
     func sort() {
+        if (!showAll){
+            sortByDueDate(true);
+        }
         if (sortMode == "Alphabet") {
             sortByAlphabet();
         } else if (sortMode == "Due Date") {
             sortByDueDate();
-        } else if (sortMode == "Build Date") {
+        } else if (sortMode == "Create Date") {
             sortByCreatedDate();
         }
     }
@@ -59,10 +72,10 @@ struct TodoListView: View {
                     .sheet(isPresented: $showingSheet, onDismiss: {
                         sort();
                     }) {
-                        SheetView(sortMode: self.$sortMode)
+                        SheetView(sortMode: self.$sortMode , ascending: $ascending )
                     }
                     
-                }.padding()
+                }.padding().disabled(!showAll)
                 List {
                     ForEach($todos, id: \.title) { $todo in
                         let sameDay = Calendar.current.isDate(todo.dueDate, equalTo: dateFilter, toGranularity: .day)
@@ -71,7 +84,7 @@ struct TodoListView: View {
                             NavigationLink(destination: TodoDetailedView(todo: $todo)) {
                                 CardView(todo: todo)
                             }.swipeActions(edge: .leading) {
-                                Button (action: { todo.update(from: Todo.Data(title: todo.title, dueDate: todo.dueDate, theme: todo.theme, isDone: true))
+                                Button (action: { todo.update(from: Todo.Data(title: todo.title, dueDate: todo.dueDate, theme: todo.theme, isDone: true, color: todo.color, createDate: todo.createDate))
                                 }) {
                                     Label("Done", systemImage: "clock.badge.checkmark")
                                 }
@@ -82,8 +95,7 @@ struct TodoListView: View {
                                     Label("Delete", systemImage: "delete.left.fill")
                                 }
                                 .tint(.red)
-                            }
-                            
+                            }.listRowBackground(todo.color)
                         }
                     }
                     
@@ -130,19 +142,33 @@ struct TodoListView: View {
 struct SheetView: View {
     @Environment(\.dismiss) var dismiss
     @Binding var sortMode: String
+    @Binding var ascending: Bool
+    
     var body: some View {
-        Button("Alphabet") {
-            sortMode = "Alphabet"
-            dismiss()
+        VStack(spacing: 75){
+            VStack(spacing: 10){
+                Text("Select sort method")
+                HStack(spacing: 30){
+                    Button("Alphabet") {
+                        sortMode = "Alphabet"
+                        dismiss()
+                    }
+                    Button("Due Date") {
+                        sortMode = "Due Date"
+                        dismiss()
+                    }
+                    Button("Create Date") {
+                        sortMode = "Create Date"
+                        dismiss()
+                    }
+                }
+            }
+            
+            Toggle(isOn: $ascending) {
+                Text("Ascending")
+            }.padding()
         }
-        Button("Due Date") {
-            sortMode = "Due Date"
-            dismiss()
-        }
-        Button("Build Date") {
-            sortMode = "Build Date"
-            dismiss()
-        }
+        
     }
 }
 

@@ -17,6 +17,9 @@ struct TodoDetailedEditView: View {
                 DatePicker(selection: $data.dueDate, in: Date()..., displayedComponents: [.date, .hourAndMinute]) {
                     Text("Date")
                 }
+                VStack {
+                    ColorPicker("Set the background color", selection: $data.color , supportsOpacity: false)
+                }
             }
         }
     }

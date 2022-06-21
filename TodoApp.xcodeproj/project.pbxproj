@@ -19,7 +19,6 @@
 		72007F10285355FD004F14FE /* TodoDetailedEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72007F0F285355FD004F14FE /* TodoDetailedEditView.swift */; };
 		72007F1228546245004F14FE /* TababrView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72007F1128546245004F14FE /* TababrView.swift */; };
 		72007F14285463BC004F14FE /* DoneListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72007F13285463BC004F14FE /* DoneListView.swift */; };
-		72C21AB02861AFC10067BDFF /* TodoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C21AAF2861AFC10067BDFF /* TodoViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,7 +35,6 @@
 		72007F0F285355FD004F14FE /* TodoDetailedEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDetailedEditView.swift; sourceTree = "<group>"; };
 		72007F1128546245004F14FE /* TababrView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TababrView.swift; sourceTree = "<group>"; };
 		72007F13285463BC004F14FE /* DoneListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneListView.swift; sourceTree = "<group>"; };
-		72C21AAF2861AFC10067BDFF /* TodoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +67,6 @@
 		72007EE528520569004F14FE /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				72C21AAE2861AFA90067BDFF /* ViewModels */,
 				72007F0428520A62004F14FE /* Models */,
 				72007EE628520569004F14FE /* TodoApp.swift */,
 				72007EE82852056B004F14FE /* Assets.xcassets */,
@@ -107,14 +104,6 @@
 				72007F0728520AEE004F14FE /* Todo.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		72C21AAE2861AFA90067BDFF /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				72C21AAF2861AFC10067BDFF /* TodoViewModel.swift */,
-			);
-			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,7 +209,6 @@
 				72007F10285355FD004F14FE /* TodoDetailedEditView.swift in Sources */,
 				72007F0628520A8B004F14FE /* Theme.swift in Sources */,
 				72007F0E285239BF004F14FE /* TodoDetailedView.swift in Sources */,
-				72C21AB02861AFC10067BDFF /* TodoViewModel.swift in Sources */,
 				72007F0C285223A6004F14FE /* TodoListView.swift in Sources */,
 				72007EF62852056B004F14FE /* TodoApp.swift in Sources */,
 				72007F0828520AEE004F14FE /* Todo.swift in Sources */,

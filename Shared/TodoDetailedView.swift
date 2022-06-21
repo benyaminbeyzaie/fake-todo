@@ -31,7 +31,7 @@ struct TodoDetailedView: View {
                 }
             }
           
-            Button(action: { todo.update(from: Todo.Data(title: todo.title, dueDate: todo.dueDate, theme: todo.theme, isDone: true)) }) {
+            Button(action: { todo.update(from: Todo.Data(title: todo.title, dueDate: todo.dueDate, theme: todo.theme, isDone: true, color: todo.color, createDate: todo.createDate)) }) {
                     Text("Done")
             }.padding()
             .foregroundColor(.green)
